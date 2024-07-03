@@ -88,7 +88,7 @@ class MqttSubscriber(Node):
     def on_message(self, client, userdata, msg):
         self.get_logger().info(msg.topic + " " + str(msg.payload))
         pub_msg = String()
-        pub_msg.data = msg.payload.decode("utf-8")
+        pub_msg.data = msg.payload.decode("utf-8").replace("\r\n", "\n")
         self.publisher.publish(pub_msg)
 
     def mqtt_loop(self):

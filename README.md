@@ -42,14 +42,44 @@ ros2 run ros_mqtt <publisher/subscriber> --ros-args -r <mqtt_pub_message/mqtt_su
 ### MQTT Configuration
 Setup MQTT is available with ROS2 parameters
 1. MQTT hostname
-```
-ros2 run ros_mqtt <publisher/subscriber> --ros-args -p mqtt_config.host:=<new_address>
-```
+    ```
+    ros2 run ros_mqtt <publisher/subscriber> --ros-args -p mqtt_config.host:=<new_address>
+    ```
 2. MQTT port
-```
-ros2 run ros_mqtt <publisher/subscriber> --ros-args -p mqtt_config.port:=<new_tcpip_port>
-```
+    ```
+    ros2 run ros_mqtt <publisher/subscriber> --ros-args -p mqtt_config.port:=<new_tcpip_port>
+    ```
 3. MQTT topic
-```
-ros2 run ros_mqtt <publisher/subscriber> --ros-args -p mqtt_config.topic:=<new_mqtt_topic_name>
-```
+    ```
+    ros2 run ros_mqtt <publisher/subscriber> --ros-args -p mqtt_config.topic:=<new_mqtt_topic_name>
+    ```
+4. With paramter file
+    1. Create parameter file "params.yaml" and write below
+        ```
+        /mqtt_sub:
+        ros__parameters:
+            mqtt_config:
+            host: 127.0.0.1
+            port: 1883
+            topic: ros_mqtt_sub
+
+        /mqtt_pub:
+        ros__parameters:
+            mqtt_config:
+            host: 127.0.0.1
+            port: 1883
+            topic: ros_mqtt_pub
+        ```
+    2. Run node
+        ```
+        ros2 run ros_mqtt <publisher/subscriber> --ros-args --params-file params.yaml
+        ```
+5. launch file (launch files are exist in the ros_mqtt/share)
+    * subscriber
+        ```
+        ros2 launch ros_mqtt subscriber.launch.py
+        ```
+    * publisher
+        ```
+        ros2 launch ros_mqtt publisher.launch.py
+        ```

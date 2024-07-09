@@ -15,14 +15,17 @@ class MqttPublisher(Node):
 
     def __init__(self):
         super(MqttPublisher, self).__init__("mqtt_pub")
-        self.declare_parameters(
-            "mqtt_config",
-            [
-                ("host", "localhost"),
-                ("port", 1883),
-                ("topic", "ros_mqtt"),
-            ],
-        )
+        self.declare_parameter("mqtt_config.host", "localhost"),
+        self.declare_parameter("mqtt_config.port", 1883),
+        self.declare_parameter("mqtt_config.topic", "ros_mqtt"),
+        # self.declare_parameters(
+        #     "mqtt_config",
+        #     [
+        #         ("host", "localhost"),
+        #         ("port", 1883),
+        #         ("topic", "ros_mqtt"),
+        #     ],
+        # )
         self.add_on_set_parameters_callback(self.on_set_parameters)
         self.mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         self.mqttc.on_connect = self.on_connect

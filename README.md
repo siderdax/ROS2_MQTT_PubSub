@@ -77,9 +77,9 @@ Setup MQTT is available with ROS2 parameters
 5. launch file (launch files are exist in the ros_mqtt/share)
     * subscriber
         ```
-        ros2 launch ros_mqtt subscriber.launch.py
+        ros2 launch ros_mqtt subscriber.launch.py host:=<address> port:=<port> topic:=<topic>
         ```
     * publisher
         ```
-        ros2 launch ros_mqtt publisher.launch.py
+        ros2 launch ros_mqtt publisher.launch.py host:=<address> port:=<port> topic:=<topic>
         ```

@@ -1,24 +1,22 @@
 from launch import LaunchDescription
-from launch_ros.actions import Node
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
     return LaunchDescription(
         [
-            Node(
-                package="ros_mqtt",
-                executable="subscriber",
-                parameters=[
-                    {
-                        "mqtt_config": {
-                            "host": "127.0.0.1",
-                            "port": 1883,
-                            "topic": "custom_topic",
-                        }
-                    },
-                ],
-                output="screen",
-                emulate_tty=True,
-            )
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    [
+                        PathJoinSubstitution(
+                            [FindPackageShare("ros_mqtt"), "launch", "mqtt.launch.py"]
+                        )
+                    ],
+                ),
+                launch_arguments={"role": "subscriber"}.items(),
+            ),
         ]
     )

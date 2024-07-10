@@ -16,7 +16,11 @@ def generate_launch_description():
                         )
                     ],
                 ),
-                launch_arguments={"role": "publisher"}.items(),
+                launch_arguments={
+                    "role": "publisher",
+                    "node_name": "mqtt_pub",
+                    "topic_name": "mqtt_pub_message",
+                }.items(),
             ),
         ]
     )

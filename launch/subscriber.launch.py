@@ -16,7 +16,11 @@ def generate_launch_description():
                         )
                     ],
                 ),
-                launch_arguments={"role": "subscriber"}.items(),
+                launch_arguments={
+                    "role": "subscriber",
+                    "node_name": "mqtt_sub",
+                    "topic_name": "mqtt_sub_message",
+                }.items(),
             ),
         ]
     )

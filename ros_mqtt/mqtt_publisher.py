@@ -32,7 +32,7 @@ class MqttPublisher(Node):
         self.mqttc.on_disconnect = self.on_disconnect
         host = self.mqtt_config["host"]
         port = self.mqtt_config["port"]
-        self.get_logger().info(f"connect mqttc host:port")
+        self.get_logger().info(f"connect mqttc {host}:{port}")
         self.mqttc.connect(host, port)
         self.subscribtion = self.create_subscription(
             String, "mqtt_pub_message", self.listener_callback, 10

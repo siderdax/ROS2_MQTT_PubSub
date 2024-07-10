@@ -95,7 +95,7 @@ class MqttSubscriber(Node):
         self.publisher.publish(pub_msg)
 
     def mqtt_loop(self):
-        self.get_logger().debug("connect mqttc")
+        self.get_logger().info(f"connect mqttc {self.mqtt_config["host"]}:{self.mqtt_config["port"]}")
         self.mqttc.connect(self.mqtt_config["host"], self.mqtt_config["port"])
         self.mqttc.loop_forever()
 

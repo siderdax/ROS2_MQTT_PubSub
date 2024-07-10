@@ -21,5 +21,6 @@ WORKDIR /
 ENV MQTT_HOST=localhost
 ENV MQTT_PORT=1883
 ENV MQTT_TOPIC=ros_mqtt_topic
-ENV MQTT_TYPE=subscriber
-CMD ["sh", "-c", "ros2 launch ros_mqtt $MQTT_TYPE.launch.py host:=$MQTT_HOST port:=$MQTT_PORT topic:=$MQTT_TOPIC"]
+ENV MQTT_ROLE=subscriber
+# CMD ["sh", "-c", "echo Start $MQTT_ROLE $MQTT_HOST $MQTT_PORT $MQTT_TOPIC;ros2 launch ros_mqtt $MQTT_ROLE.launch.py host:=$MQTT_HOST port:=$MQTT_PORT topic:=$MQTT_TOPIC"]
+CMD ["sh", "-c", "bash"]

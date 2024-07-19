@@ -73,7 +73,7 @@ class MqttPublisher(Node):
             self.mqttc.loop_start()
             self.mqttc.publish(self.topic, msg.data)
             self.mqttc.loop_stop()
-            self.get_logger().info('I heard: "%s"' % msg.data)
+            self.get_logger().debug('I heard: "%s"' % msg.data)
         except:
             pass
 
